@@ -9,6 +9,7 @@ export const useMovieList = (params?: MovieListParams) => {
   return useAxios<Movies>({
     url: `/movie/${category}`,
     params: {
+      include_adult: false,
       language: 'en-US',
       page,
     }
