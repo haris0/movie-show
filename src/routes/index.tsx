@@ -10,6 +10,7 @@ const AppRoutes = () => {
       <Route path="/:id" element={<Detail />}></Route>
       <Route path="/search" element={<Search />}></Route>
       <Route path="/favorite" element={<Detail />}></Route>
+      <Route path="*" element={<div>404</div>} />
     </Routes>
   );
 };
