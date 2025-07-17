@@ -3,6 +3,7 @@ import { configure } from 'axios-hooks';
 import { LRUCache } from 'lru-cache'
 
 export const baseURL = 'https://api.themoviedb.org/3';
+export const basePosterCardURL = 'https://image.tmdb.org/t/p/w220_and_h330_face';
 
 const axios = Axios.create({
   baseURL,

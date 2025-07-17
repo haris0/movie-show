@@ -4,6 +4,8 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useMovieList } from "../../services/movie-list/useMovieList";
 import type { CategoryType } from "../../services/movie-list/type";
 import SearchFilter from "../../components/search-filter/SearchFilter";
+import MovieCard from "../../components/movie-card/MovieCard";
+import loadingIcon from '../../assets/loading.gif'
 
 const Home = () => {
   const navigate = useNavigate();
@@ -41,19 +43,22 @@ const Home = () => {
         category={category}
         handleChangeCategory={handleChangeCategory}
       />
-      <div className="px-5">
-        {loading && <p>Loading...</p>}
-        {!loading && data && (
-          <ul>
-            {data.results.map((movie) => (
-              <li key={movie.id} className="mb-2">
-                <a href={`/${movie.id}`} className="text-blue-500 hover:underline">
-                  {movie.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-        )}
+      <div className="mx-5 max-w-300 flex justify-center">
+        {loading && <img className="mt-10" width={50} src={loadingIcon} alt="loading" />}
+      </div>
+      <div className="flex justify-center">
+        <div className="mx-5 w-full max-w-300 mb-10 gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center">
+          {!loading && data && data.results.map((movie) => (
+            <MovieCard 
+              id={movie.id}
+              title={movie.title}
+              overview={movie.overview}
+              coverUrl={movie.backdrop_path}
+              voteAverage={movie.vote_average}
+              release={movie.release_date}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

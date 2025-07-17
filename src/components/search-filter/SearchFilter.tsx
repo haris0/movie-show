@@ -17,7 +17,7 @@ const SearchFilter = ({
 }: SearchFilterProps) => {
   return (
     <div className="w-full rounded-t-4xl -mt-8 min-h-20 bg-white flex justify-center">
-      <div className="bg-white rounded-xl border border-slate-200 border-b-blue-100 p-5 w-full m-5 -mt-12 gap-4 flex flex-col">
+      <div className="bg-white rounded-xl border border-slate-200 border-b-blue-100 p-5 w-full m-5 max-w-300 -mt-10 gap-4 flex flex-col">
         <div className="relative">
           <input
             name='search'
