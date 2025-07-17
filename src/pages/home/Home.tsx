@@ -89,14 +89,15 @@ const Home = () => {
                   Back
                 </button>
               )}
-              {(data?.page || 0) < (data?.total_pages || 0)}
-              <button 
-                type="button" 
-                className="text-gray-900 cursor-pointer w-fit justify-self-center bg-white border border-gray-300 focus:outline-none rounded-lg text-sm px-5 py-2.5"
-                onClick={() => handleChangePage('next')}
-              >
-                Next
-              </button>
+              {(data?.page || 0) < (data?.total_pages || 0) && (
+                <button 
+                  type="button" 
+                  className="text-gray-900 cursor-pointer w-fit justify-self-center bg-white border border-gray-300 focus:outline-none rounded-lg text-sm px-5 py-2.5"
+                  onClick={() => handleChangePage('next')}
+                >
+                  Next
+                </button>
+              )}
             </div>
           </>
         )}
