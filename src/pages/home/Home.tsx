@@ -11,8 +11,8 @@ const Home = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const category = (searchParams.get('category') as CategoryType) || 'now_playing';
+  const page = Number(searchParams.get('page')) || 1;
   
-  const [page] = useState(1);
   const [keyword, setKeyword] = useState('');
 
   const [{ data, loading }] = useMovieList({
@@ -22,9 +22,26 @@ const Home = () => {
 
   const handleChangeCategory = (category: CategoryType) => {
     setSearchParams((prevParams) => {
+      prevParams.delete('page')
       prevParams.set('category', category);
       return prevParams;
     })
+  }
+
+  const handleChangePage = (type: 'next' | 'back') => {
+    setSearchParams((prevParams) => {
+      let newPage;
+      if(type === 'next') {
+        newPage = ((data?.page || 0) + 1);
+      } else {
+        newPage = ((data?.page || 0) - 1);
+      }
+      prevParams.set('page', newPage.toString());
+      return prevParams;
+    })
+    window.scrollTo({
+      top: 0,
+    });
   }
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -43,22 +60,46 @@ const Home = () => {
         category={category}
         handleChangeCategory={handleChangeCategory}
       />
-      <div className="mx-5 max-w-300 flex justify-center">
-        {loading && <img className="mt-10" width={50} src={loadingIcon} alt="loading" />}
+      <div className="px-5 w-full flex justify-center">
+        {loading && <img className="mt-10 items-center" width={50} src={loadingIcon} alt="loading" />}
       </div>
-      <div className="flex justify-center">
-        <div className="mx-5 w-full max-w-300 mb-10 gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center">
-          {!loading && data && data.results.map((movie) => (
-            <MovieCard 
-              id={movie.id}
-              title={movie.title}
-              overview={movie.overview}
-              coverUrl={movie.backdrop_path}
-              voteAverage={movie.vote_average}
-              release={movie.release_date}
-            />
-          ))}
-        </div>
+      <div className="flex justify-center flex-col items-center px-5">
+        {!loading && data?.results && (
+          <>
+            <div className="w-full max-w-300 mb-8 gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center">
+              {data.results?.map((movie) => (
+                <MovieCard 
+                  key={movie.id}
+                  id={movie.id}
+                  title={movie.title}
+                  overview={movie.overview}
+                  coverUrl={movie.backdrop_path}
+                  voteAverage={movie.vote_average}
+                  release={movie.release_date}
+                />
+              ))}
+            </ div>
+            <div className="flex gap-2 justify-center mb-5">
+              {(data?.page || 0) > 1 && (
+                <button 
+                  type="button" 
+                  className="text-gray-900 cursor-pointer w-fit justify-self-center bg-white border border-gray-300 focus:outline-none rounded-lg text-sm px-5 py-2.5"
+                  onClick={() => handleChangePage('back')}
+                >
+                  Back
+                </button>
+              )}
+              {(data?.page || 0) < (data?.total_pages || 0)}
+              <button 
+                type="button" 
+                className="text-gray-900 cursor-pointer w-fit justify-self-center bg-white border border-gray-300 focus:outline-none rounded-lg text-sm px-5 py-2.5"
+                onClick={() => handleChangePage('next')}
+              >
+                Next
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
