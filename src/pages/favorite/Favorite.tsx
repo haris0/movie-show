@@ -21,7 +21,7 @@ const Favorite = () => {
   
   return (
     <div>
-      <header className={`h-40 bg-[${primaryColor}] rounded-b-2xl`}>
+      <header className={`h-40 bg-[${primaryColor}] rounded-b-4xl`}>
         <div className="flex flex-col h-full w-full p-5 items-center">
           <div className="w-full max-w-300">
             <Link to={'..'} >
