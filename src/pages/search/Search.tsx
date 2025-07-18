@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useMovieSearch } from "../../services/movie-search/useMovieSearch";
 import loadingIcon from '../../assets/loading.gif'
 import MovieCard from "../../components/movie-card/MovieCard";
-import { useState } from "react";
 import { useDebounce } from "../../hooks/useDebounce";
+import PaginationButton from "../../components/pagination-button/PaginationButton";
+import SearchIcon from "../../assets/SearchIcon";
+import BackIcon from "../../assets/BackIcon";
 
 const Search = () => {
   const mavigate = useNavigate()
@@ -53,9 +56,9 @@ const Search = () => {
           <button 
             type="button" 
             className="w-10 h-10 cursor-pointer rounded-full borde flex justify-center items-center"
-            onClick={() => mavigate(-1)}
+            onClick={() => mavigate('/')}
           >
-            <svg viewBox="0 0 1024 1024" width={35} xmlns="http://www.w3.org/2000/svg" fill="#ffffff" stroke="#ffffff"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#ffffff" d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"></path><path fill="#ffffff" d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"></path></g></svg>
+            <BackIcon />
           </button>
           <input
             name='search'
@@ -69,14 +72,7 @@ const Search = () => {
               updateQueryParams(value);
             }}
           />
-          <svg 
-            viewBox="0 0 24 24"
-            className="h-5 w-5 ml-1 absolute top-2.5 right-3.5" 
-            fill="none" 
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16.6725 16.6412L21 21M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="#737373" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> </g>
-          </svg>
+          <SearchIcon />
         </div>
       </header>
       <div className="px-5 mt-10 w-full flex justify-center">
@@ -101,26 +97,11 @@ const Search = () => {
                 />
               ))}
             </ div>
-            <div className="flex gap-2 justify-center mb-5">
-              {(data?.page || 0) > 1 && (
-                <button 
-                  type="button" 
-                  className="text-gray-900 cursor-pointer w-fit justify-self-center bg-white border border-gray-300 focus:outline-none rounded-lg text-sm px-5 py-2.5"
-                  onClick={() => handleChangePage('back')}
-                >
-                  Back
-                </button>
-              )}
-              {(data?.page || 0) < (data?.total_pages || 0) && (
-                <button 
-                  type="button" 
-                  className="text-gray-900 cursor-pointer w-fit justify-self-center bg-white border border-gray-300 focus:outline-none rounded-lg text-sm px-5 py-2.5"
-                  onClick={() => handleChangePage('next')}
-                >
-                  Next"
-                </button>
-              )}
-            </div>
+            <PaginationButton
+              currentPage={data?.page || 0}
+              totalPage={data?.total_pages || 0}
+              onClickPageChange={handleChangePage}
+            />
           </>
         )}
       </div>

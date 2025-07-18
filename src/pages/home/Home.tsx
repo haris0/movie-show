@@ -6,6 +6,7 @@ import type { CategoryType } from "../../services/movie-list/type";
 import SearchFilter from "../../components/search-filter/SearchFilter";
 import MovieCard from "../../components/movie-card/MovieCard";
 import loadingIcon from '../../assets/loading.gif'
+import PaginationButton from "../../components/pagination-button/PaginationButton";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -79,26 +80,11 @@ const Home = () => {
                 />
               ))}
             </ div>
-            <div className="flex gap-2 justify-center mb-5">
-              {(data?.page || 0) > 1 && (
-                <button 
-                  type="button" 
-                  className="text-gray-900 cursor-pointer w-fit justify-self-center bg-white border border-gray-300 focus:outline-none rounded-lg text-sm px-5 py-2.5"
-                  onClick={() => handleChangePage('back')}
-                >
-                  Back
-                </button>
-              )}
-              {(data?.page || 0) < (data?.total_pages || 0) && (
-                <button 
-                  type="button" 
-                  className="text-gray-900 cursor-pointer w-fit justify-self-center bg-white border border-gray-300 focus:outline-none rounded-lg text-sm px-5 py-2.5"
-                  onClick={() => handleChangePage('next')}
-                >
-                  Next
-                </button>
-              )}
-            </div>
+            <PaginationButton
+              currentPage={data?.page || 0}
+              totalPage={data?.total_pages || 0}
+              onClickPageChange={handleChangePage}
+            />
           </>
         )}
       </div>
