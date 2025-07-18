@@ -30,7 +30,9 @@ const SearchFilter = ({
             onChange={(e) => setKeyword?.(e.target.value)}
             onKeyDown={handleKeyDown}
           />
-          <SearchIcon />
+          <SearchIcon
+            className="h-5 w-5 ml-1 absolute top-2 right-2.5" 
+          />
         </div>
         <div className="relative">
           <select

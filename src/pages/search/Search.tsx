@@ -8,10 +8,13 @@ import PaginationButton from "../../components/pagination-button/PaginationButto
 import SearchIcon from "../../assets/SearchIcon";
 import BackIcon from "../../assets/BackIcon";
 import { primaryColor } from "../../constans";
+import type { Movie } from "../../types/movie";
+import { useFavoriteContext } from "../../context/FavoriteContext";
 
 const Search = () => {
   const mavigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams();
+    const { addFavorite, checkFavorite, removeFavorite } = useFavoriteContext();
 
   const query = searchParams.get('keyword') || '';
   const page = Number(searchParams.get('page')) || 1;
@@ -50,6 +53,17 @@ const Search = () => {
     }
   }, 700);
 
+  const handleFavorite = (movie: Movie) => {
+    addFavorite({
+      id: movie.id,
+      title: movie.title,
+      posterPath: movie.poster_path,
+      overview: movie.overview,
+      releaseDate: movie.release_date,
+      voteAverage: movie.vote_average
+    })
+  }
+
   return (
     <div>
       <header className={`h-20 md:h-25 bg-[${primaryColor}] p-5 flex justify-center w-full gap-3 items-center`}>
@@ -73,7 +87,9 @@ const Search = () => {
               updateQueryParams(value);
             }}
           />
-          <SearchIcon />
+          <SearchIcon 
+            className="h-5 w-5 ml-1 absolute top-2.5 right-2.5" 
+          />
         </div>
       </header>
       <div className="px-5 mt-10 w-full flex justify-center">
@@ -95,6 +111,12 @@ const Search = () => {
                   coverUrl={movie.backdrop_path}
                   voteAverage={movie.vote_average}
                   release={movie.release_date}
+                  isFavorite={checkFavorite(movie.id)}
+                  onFavorite={
+                    (action) => action === 'add' 
+                      ? handleFavorite(movie) 
+                      : removeFavorite(movie.id)
+                  }
                 />
               ))}
             </ div>

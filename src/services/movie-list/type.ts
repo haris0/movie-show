@@ -1,4 +1,4 @@
-import type { Result } from "../../types/movie";
+import type { Movie } from "../../types/movie";
 
 export type CategoryType = 'now_playing' | 'popular' | 'top_rated' | 'upcoming';
 
@@ -10,7 +10,7 @@ export interface MovieListParams {
 export interface Movies {
   dates: Dates
   page: number
-  results: Result[]
+  results: Movie[]
   total_pages: number
   total_results: number
 }

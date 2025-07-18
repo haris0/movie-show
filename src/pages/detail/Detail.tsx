@@ -1,10 +1,11 @@
 import { useMemo } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { useMovieDetail } from "../../services/movie-detail/useMovieDetail";
 import { useMovieCredits } from "../../services/movie-credits/useMovieCredit";
 import { useMovieVideos } from "../../services/movie-videos/useMovieVideos";
 import { baseBackgroundURL, basePosterCardURL, baseProfileURL } from "../../services/axios";
+import { useFavoriteContext } from "../../context/FavoriteContext";
 
 import BackIcon from "../../assets/BackIcon";
 import placeholder from '../../assets/thumbnail.png';
@@ -15,12 +16,18 @@ import StarIcon from "../../assets/StarIcon";
 import YoutubeEmbed from "../../components/youtube-embed/YoutubeEmbed";
 import loadingIcon from '../../assets/loading.gif'
 import { primaryColor } from "../../constans";
+import BookmarkIcon from "../../assets/Bookmark";
+import type { MovieDetail } from "../../services/movie-detail/type";
 
 const Detail = () => {
   const { id = '' } = useParams();
+  const navigate = useNavigate();
+  const { addFavorite, checkFavorite, removeFavorite } = useFavoriteContext();
   const [{ data, loading }] = useMovieDetail(id);
   const [{ data: videos }] = useMovieVideos(id);
   const [{ data: credits }] = useMovieCredits(id);
+
+  const isFavorite = useMemo(() =>checkFavorite(data?.id || 0), [checkFavorite, data?.id]);
 
   const officialTrailer = useMemo(() => {
     return videos?.results?.find(
@@ -28,6 +35,17 @@ const Detail = () => {
               || video.name.includes('Official Teaser')
               || (video.official && video.type === 'Trailer'));
   }, [videos]);
+
+  const handleFavorite = (movie: MovieDetail) => {
+    addFavorite({
+      id: movie.id,
+      title: movie.title,
+      posterPath: movie.poster_path,
+      overview: movie.overview,
+      releaseDate: movie.release_date,
+      voteAverage: movie.vote_average
+    })
+  }
 
   return (
     <div>
@@ -41,11 +59,13 @@ const Detail = () => {
           `,
         }}
       >
-        <Link to={'..'} >
-          <button type="button" className="m-5 cursor-pointer h-fit w-fit">
-            <BackIcon />
-          </button>
-        </Link>
+        <div className="flex w-full justify-center p-5">
+          <div className="flex w-full max-w-300">
+            <button type="button" className="cursor-pointer h-fit w-fit" onClick={() => navigate(-1)}>
+              <BackIcon />
+            </button>
+          </div>
+        </div>
       </div>
       <div className="px-5 w-full flex justify-center">
         {loading && <img className="mt-10 items-center" width={50} src={loadingIcon} alt="loading" />}
@@ -60,7 +80,21 @@ const Detail = () => {
                 className="rounded-xl w-52 -mt-42"
               />
               <div className="flex flex-col gap-1.5 items-center sm:items-start">
-                <p className="text-2xl font-bold text-center">{data?.title} ({data?.release_date.split('-')[0]})</p>
+                <div className="flex gap-2 items-center">
+                  <p className="text-2xl font-bold text-center">
+                    {data?.title} ({data?.release_date.split('-')[0]})
+                  </p>
+                  <button 
+                    type="button" 
+                    className="w-fit h-fit cursor-pointer mt-1"
+                    onClick={() => isFavorite ? removeFavorite(data.id) : handleFavorite(data)}
+                  >
+                    <BookmarkIcon 
+                      className={`w-6 opacity-80`}
+                      fill={isFavorite ? primaryColor : 'grey'}
+                    />
+                  </button>
+                </div>
                 <div className="text-center sm:text-left">
                   <span>
                     {formatDate(data?.release_date)} ({

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 import { useMovieList } from "../../services/movie-list/useMovieList";
 import type { CategoryType } from "../../services/movie-list/type";
@@ -8,9 +8,12 @@ import MovieCard from "../../components/movie-card/MovieCard";
 import loadingIcon from '../../assets/loading.gif'
 import PaginationButton from "../../components/pagination-button/PaginationButton";
 import { primaryColor } from "../../constans";
+import { useFavoriteContext } from "../../context/FavoriteContext";
+import type { Movie } from "../../types/movie";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { addFavorite, countFavorite, checkFavorite, removeFavorite } = useFavoriteContext();
   const [searchParams, setSearchParams] = useSearchParams();
   const category = (searchParams.get('category') as CategoryType) || 'now_playing';
   const page = Number(searchParams.get('page')) || 1;
@@ -52,9 +55,30 @@ const Home = () => {
     }
   };
 
+  const handleFavorite = (movie: Movie) => {
+    addFavorite({
+      id: movie.id,
+      title: movie.title,
+      posterPath: movie.poster_path,
+      overview: movie.overview,
+      releaseDate: movie.release_date,
+      voteAverage: movie.vote_average
+    })
+  }
+
   return (
     <div>
-      <header className={`h-60 bg-[${primaryColor}]`}/>
+      <header className={`h-60 bg-[${primaryColor}]`}>
+        <div className="flex flex-col items-center p-5">
+          <div className="flex w-full max-w-300 justify-end">
+            <Link to='/favorite'>
+              <button type="button" className="bg-black opacity-50 text-white px-3 py-1 rounded-2xl cursor-pointer">
+                Favorite: {countFavorite}
+              </button>
+            </Link>
+          </div>
+        </div>
+      </header>
       <SearchFilter 
         keyword={keyword}
         setKeyword={(key) => setKeyword(key)}
@@ -78,6 +102,12 @@ const Home = () => {
                   coverUrl={movie.backdrop_path}
                   voteAverage={movie.vote_average}
                   release={movie.release_date}
+                  onFavorite={
+                    (action) => action === 'add' 
+                      ? handleFavorite(movie) 
+                      : removeFavorite(movie.id)
+                  }
+                  isFavorite={checkFavorite(movie.id)}
                 />
               ))}
             </ div>
