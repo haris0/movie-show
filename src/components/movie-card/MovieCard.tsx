@@ -28,8 +28,8 @@ const MovieCard = ({
           alt={title}
           className="rounded-xl w-43"
         />
-        <div className="py-5 flex flex-col gap-2">
-          <p className="text-md font-bold">{title}</p>
+        <div className="py-6 flex flex-col gap-1">
+          <p className="text-lg font-bold">{title}</p>
           <p>{release?.split('-')[0]}</p>
           <p className="text-xs text-gray-400 line-clamp-5">{overview}</p>
           <div className="flex gap-1">

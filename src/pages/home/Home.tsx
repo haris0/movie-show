@@ -7,6 +7,7 @@ import SearchFilter from "../../components/search-filter/SearchFilter";
 import MovieCard from "../../components/movie-card/MovieCard";
 import loadingIcon from '../../assets/loading.gif'
 import PaginationButton from "../../components/pagination-button/PaginationButton";
+import { primaryColor } from "../../constans";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -53,7 +54,7 @@ const Home = () => {
 
   return (
     <div>
-      <header className="h-60 bg-[#2596be]" />
+      <header className={`h-60 bg-[${primaryColor}]`}/>
       <SearchFilter 
         keyword={keyword}
         setKeyword={(key) => setKeyword(key)}

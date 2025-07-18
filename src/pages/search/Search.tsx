@@ -7,6 +7,7 @@ import { useDebounce } from "../../hooks/useDebounce";
 import PaginationButton from "../../components/pagination-button/PaginationButton";
 import SearchIcon from "../../assets/SearchIcon";
 import BackIcon from "../../assets/BackIcon";
+import { primaryColor } from "../../constans";
 
 const Search = () => {
   const mavigate = useNavigate()
@@ -51,7 +52,7 @@ const Search = () => {
 
   return (
     <div>
-      <header className="h-20 md:h-25 bg-[#2596be] p-5  flex justify-center w-full gap-3 items-center" >
+      <header className={`h-20 md:h-25 bg-[${primaryColor}] p-5 flex justify-center w-full gap-3 items-center`}>
         <div className="w-full max-w-300 flex relative gap-2 items-center">
           <button 
             type="button" 

@@ -1,0 +1,32 @@
+export interface Cast {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: null | string;
+  cast_id?: number;
+  character?: string;
+  credit_id: string;
+  order?: number;
+  department?: string;
+  job?: string;
+  overview: string;
+  release_date?: string;
+  backdrop_path: null | string;
+  genre_ids: number[];
+  vote_count: number;
+  original_language: 'en';
+  original_title?: string;
+  poster_path: null | string;
+  title?: string;
+  video?: boolean;
+  vote_average: number;
+  media_type: 'movie' | 'tv';
+  first_air_date?: string;
+  origin_country?: string[];
+  episode_count?: number;
+  release_year?: number | '';
+}
