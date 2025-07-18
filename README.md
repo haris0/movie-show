@@ -2,6 +2,11 @@
 
 This app show movie list, you can check detail for each moview, search for movie, and save your favorite movie. The data is provided by [Themoviedb](https://www.themoviedb.org/).
 
+## Preview
+| Home | Search | Detail | Favorite |
+|------|--------|--------|----------|
+|![page1](./preview1.png)|![page2](./preview2.png)|![page3](./preview3.png)|![page4](./preview4.png)|
+
 ## Build Setup
 To run this project you need Node 22. In the project directory, you can run:
 
