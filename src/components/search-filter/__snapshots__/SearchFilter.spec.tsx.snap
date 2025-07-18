@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`SearchFilter Component should render correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="w-full rounded-t-4xl -mt-8 min-h-20 bg-white flex justify-center"
+    >
+      <div
+        class="bg-white rounded-xl border border-slate-200 border-b-blue-100 p-5 w-full m-5 max-w-300 -mt-10 gap-4 flex flex-col"
+      >
+        <div
+          class="relative"
+        >
+          <input
+            class="bg-gray-50 p-2 pr-8 placeholder-gray-500 text-gray-500 text-sm rounded-lg w-full border border-slate-200 focus:outline-none"
+            name="search"
+            placeholder="Search"
+            type="text"
+            value=""
+          />
+          <svg
+            class="h-5 w-5 ml-1 absolute top-2 right-2.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g
+              id="SVGRepo_bgCarrier"
+              stroke-width="0"
+            />
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <g
+              id="SVGRepo_iconCarrier"
+            >
+               
+              <path
+                d="M16.6725 16.6412L21 21M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
+                stroke="#737373"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              />
+               
+            </g>
+          </svg>
+        </div>
+        <div
+          class="relative"
+        >
+          <select
+            class="bg-gray-50 p-2 text-gray-500 text-sm rounded-lg w-full border border-slate-200 focus:outline-none appearance-none cursor-pointer"
+            name="category"
+          >
+            <option
+              value="now_playing"
+            >
+              Now Playing
+            </option>
+            <option
+              value="popular"
+            >
+              Popular
+            </option>
+            <option
+              value="top_rated"
+            >
+              Top Rated
+            </option>
+            <option
+              value="upcoming"
+            >
+              Upcoming
+            </option>
+          </select>
+          <svg
+            class="h-5 w-5 ml-1 absolute top-2.5 right-2.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g
+              id="SVGRepo_bgCarrier"
+              stroke-width="0"
+            />
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <g
+              id="SVGRepo_iconCarrier"
+            >
+               
+              <path
+                d="M4 5L10 5M10 5C10 6.10457 10.8954 7 12 7C13.1046 7 14 6.10457 14 5M10 5C10 3.89543 10.8954 3 12 3C13.1046 3 14 3.89543 14 5M14 5L20 5M4 12L16 12M16 12C16 13.1046 16.8954 14 18 14C19.1046 14 20 13.1046 20 12C20 10.8954 19.1046 10 18 10C16.8954 10 16 10.8954 16 12ZM8 19L20 19M8 19C8 17.8954 7.10457 17 6 17C4.89543 17 4 17.8954 4 19C4 20.1046 4.89543 21 6 21C7.10457 21 8 20.1046 8 19Z"
+                stroke="#737373"
+                stroke-linecap="round"
+                stroke-width="1.5"
+              />
+               
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

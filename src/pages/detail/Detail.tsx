@@ -15,7 +15,6 @@ import { convertMinsToHrsMins } from "../../utils/duration";
 import StarIcon from "../../assets/StarIcon";
 import YoutubeEmbed from "../../components/youtube-embed/YoutubeEmbed";
 import loadingIcon from '../../assets/loading.gif'
-import { primaryColor } from "../../constans";
 import BookmarkIcon from "../../assets/Bookmark";
 import type { MovieDetail } from "../../services/movie-detail/type";
 
@@ -49,7 +48,7 @@ const Detail = () => {
 
   return (
     <div>
-      <div className={`h-1 bg-[${primaryColor}]`}/>
+      <div className={`h-1 bg-[#2596be]`}/>
       <div
         className='w-full h-[25rem] bg-cover bg-center center bg-no-repeat'
         style={{
@@ -91,7 +90,7 @@ const Detail = () => {
                   >
                     <BookmarkIcon 
                       className={`w-6 opacity-80`}
-                      fill={isFavorite ? primaryColor : 'grey'}
+                      fill={isFavorite ? '#2596be' : 'grey'}
                     />
                   </button>
                 </div>
@@ -128,7 +127,7 @@ const Detail = () => {
               <p className="text-xl font-bold">Top Billed Cast</p>
               <div className="flex flex-row overflow-x-auto gap-3">
                 {credits?.cast?.map((cast) => (
-                  <div className="min-w-38 flex flex-col gap-1 mb-3">
+                  <div key={cast.id} className="min-w-38 flex flex-col gap-1 mb-3">
                     <img
                       src={cast?.profile_path ? `${baseProfileURL}/${cast.profile_path}` : placeholderSquare}
                       alt={cast?.name}

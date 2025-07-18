@@ -3,7 +3,6 @@ import { basePosterCardURL } from "../../services/axios";
 import placeholder from '../../assets/thumbnail.png'
 import StarIcon from "../../assets/StarIcon";
 import BookmarkIcon from "../../assets/Bookmark";
-import { primaryColor } from "../../constans";
 
 interface MovieCardProps {
   id: number;
@@ -46,7 +45,7 @@ const MovieCard = ({
           >
             <BookmarkIcon 
               className={`absolute top-2 left-2 w-6 opacity-80`}
-              fill={isFavorite ? primaryColor : 'grey'}
+              fill={isFavorite ? '#2596be' : 'grey'}
             />
           </button>
         </div>

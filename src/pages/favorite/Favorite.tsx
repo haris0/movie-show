@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import MovieCard from "../../components/movie-card/MovieCard";
-import { primaryColor } from "../../constans";
 import { useFavoriteContext } from "../../context/FavoriteContext";
 import type { Favorite } from "../../types/favorite";
 import BackIcon from "../../assets/BackIcon";
@@ -21,7 +20,7 @@ const Favorite = () => {
   
   return (
     <div>
-      <header className={`h-40 bg-[${primaryColor}] rounded-b-4xl`}>
+      <header className={`h-40 bg-[#2596be] rounded-b-4xl`}>
         <div className="flex flex-col h-full w-full p-5 items-center">
           <div className="w-full max-w-300">
             <Link to={'..'} >

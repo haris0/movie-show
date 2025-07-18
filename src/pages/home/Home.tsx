@@ -7,7 +7,6 @@ import SearchFilter from "../../components/search-filter/SearchFilter";
 import MovieCard from "../../components/movie-card/MovieCard";
 import loadingIcon from '../../assets/loading.gif'
 import PaginationButton from "../../components/pagination-button/PaginationButton";
-import { primaryColor } from "../../constans";
 import { useFavoriteContext } from "../../context/FavoriteContext";
 import type { Movie } from "../../types/movie";
 
@@ -68,7 +67,7 @@ const Home = () => {
 
   return (
     <div>
-      <header className={`h-60 bg-[${primaryColor}]`}>
+      <header className={`h-60 bg-[#2596be]`}>
         <div className="flex flex-col items-center p-5">
           <div className="flex w-full max-w-300 justify-end">
             <Link to='/favorite'>

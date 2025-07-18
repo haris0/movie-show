@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`PaginationButton Component should render correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="flex gap-2 justify-center mb-5"
+    >
+      <button
+        class="text-gray-900 flex items-center gap-2 cursor-pointer w-fit justify-self-center bg-white border border-gray-300 focus:outline-none rounded-lg text-sm px-3 py-2.5"
+        type="button"
+      >
+        <svg
+          fill="#000000"
+          stroke="#000000"
+          viewBox="0 0 1024 1024"
+          width="20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g
+            id="SVGRepo_bgCarrier"
+            stroke-width="0"
+          />
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <g
+            id="SVGRepo_iconCarrier"
+          >
+            <path
+              d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"
+              fill="#000000"
+            />
+            <path
+              d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"
+              fill="#000000"
+            />
+          </g>
+        </svg>
+        Back
+      </button>
+      <button
+        class="text-gray-900 cursor-pointer flex items-center gap-2 w-fit justify-self-center bg-white border border-gray-300 focus:outline-none rounded-lg text-sm px-3 py-2.5"
+        type="button"
+      >
+        Next
+        <svg
+          class="rotate-180"
+          fill="#000000"
+          stroke="#000000"
+          viewBox="0 0 1024 1024"
+          width="20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g
+            id="SVGRepo_bgCarrier"
+            stroke-width="0"
+          />
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <g
+            id="SVGRepo_iconCarrier"
+          >
+            <path
+              d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"
+              fill="#000000"
+            />
+            <path
+              d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"
+              fill="#000000"
+            />
+          </g>
+        </svg>
+      </button>
+    </div>
+  </div>
+</body>
+`;
